@@ -27,7 +27,7 @@ struct variable : expression<variable> //создание переменной �
 };
  
 template<typename E>
-struct negate : expression<negate<E>>
+struct negate : expression<negate<E>> //создание отрицательных переменных в выражении
 {
     negate(const expression<E>& expr) : expr(expr.self()) {};
  
