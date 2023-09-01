@@ -2,16 +2,16 @@
 #include <functional>
  
 template<typename O>
-struct math_object_base
+struct math_object_base //базовый класс для шаблонного наследования
 {
     O& self() { return static_cast<O&>(*this); }
     const O& self() const { return static_cast<const O&>(*this); }
 };
  
-template<typename E>
+template<typename E> //обёртка класса
 struct expression : math_object_base<E> {};
  
-struct constant : expression<constant>
+struct constant : expression<constant> //создание констант в выражении
 {
     constant(double value) : value(value) {}
  
@@ -21,7 +21,7 @@ private:
     double value;
 };
  
-struct variable : expression<variable>
+struct variable : expression<variable> //создание переменной в выражении
 {
     double operator()(double x) const { return x; }
 };
